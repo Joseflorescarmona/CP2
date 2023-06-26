@@ -1,0 +1,3 @@
+README
+
+Segunda practica 
