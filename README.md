@@ -37,11 +37,20 @@ se identifica los ficheros y se inicializa en installa el proevedor de azurre
 
 Errors:
 
-Creating the VM I get this error about accepted the legal terms and conditions antes de crear la VM y no me dejaba crearla
+    Creating the VM I get this error about accepted the legal terms and conditions antes de crear la VM y no me dejaba crearla
 
-I have to execute this:
+    I have to execute this:
 
-az vm image terms accept --publisher cognosys --offer CentOS-8-stream-free --plan CentOS-8-stream-free
+    az vm image terms accept --publisher cognosys --offer CentOS-8-stream-free --plan CentOS-8-stream-free
 
-to aceept terms and contitions for the VM
+    to aceept terms and contitions for the VM
 
+
+Documentacion del terraform Registry
+
+    para crear la maquina virtual y definirla
+        https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/resources/linux_virtual_machine
+    para el clubster de Kubernetes
+        https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/resources/kubernetes_cluster
+
+son los dos importantes de la practica
