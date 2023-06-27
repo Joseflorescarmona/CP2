@@ -30,4 +30,10 @@ se identifica los ficheros y se inicializa en installa el proevedor de azurre
     
     si no hay plan creado en este momento se contruye el plan
 
+3. Destruir la infraestructura creada
+    
+        Terraform destroy
+
+        
+
 
