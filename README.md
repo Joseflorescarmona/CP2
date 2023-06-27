@@ -19,10 +19,15 @@ se identifica los ficheros y se inicializa en installa el proevedor de azurre
 
     abrirar una ventana del navegador por defecto para introducir las credenciales de unir
 
-    Cuando termine creara un fichero ilegible pero en la consola podremos ver los resultados    
-    para llevar a cabo estas acciones ejecuta esto:
-        
-        terraform apply "myplan"
+    Cuando termine creara un fichero ilegible pero en la consola podremos ver los resultados  
+    el siguiente paso podria ser validar la configuracion (antes de contruir el plan)
 
+        Terraform fmt
+  
+    y por ultimo contruir el plan
+        
+        terraform apply "myplan" 
+    
+    si no hay plan creado en este momento se contruye el plan
 
 
