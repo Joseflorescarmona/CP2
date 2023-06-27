@@ -34,6 +34,14 @@ se identifica los ficheros y se inicializa en installa el proevedor de azurre
     
         Terraform destroy
 
-        
 
+Errors:
+
+Creating the VM I get this error about accepted the legal terms and conditions antes de crear la VM y no me dejaba crearla
+
+I have to execute this:
+
+az vm image terms accept --publisher cognosys --offer CentOS-8-stream-free --plan CentOS-8-stream-free
+
+to aceept terms and contitions for the VM
 
