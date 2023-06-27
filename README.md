@@ -2,6 +2,8 @@ README
 
 Segunda practica del experto en DevOps:
 
+TERRAFORM
+
 1. inicializacion con el comando
       
         Terraform init
@@ -35,7 +37,7 @@ se identifica los ficheros y se inicializa en installa el proevedor de azurre
         Terraform destroy
 
 
-Errors:
+Error1: falta de aceptar las condiciones legales y no crea la VM 
 
     Creating the VM I get this error about accepted the legal terms and conditions antes de crear la VM y no me dejaba crearla
 
@@ -45,6 +47,9 @@ Errors:
 
     to aceept terms and contitions for the VM
 
+Error2: Crear la clave publica de ssh, necesite ejecutar esto y luego te pregunta donde va el archivo guardado
+
+     ssh-keygen -t rsa -b 2048
 
 Documentacion del terraform Registry
 
@@ -54,3 +59,8 @@ Documentacion del terraform Registry
         https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/resources/kubernetes_cluster
 
 son los dos importantes de la practica
+
+
+ANSIBLE
+
+
