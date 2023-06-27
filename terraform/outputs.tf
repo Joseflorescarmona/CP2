@@ -3,5 +3,5 @@ output "resource_group_id" {                     // varoables de salida con el i
 }
 
 output "vm_id" {
-  value = azurerm_linux_virtual_machine.vm_id    //definimos otra variable de salida para cuando se cree la maquina virtual de linux
+  value = azurerm_linux_virtual_machine.vm.id    //definimos otra variable de salida para cuando se cree la maquina virtual de linux
 }

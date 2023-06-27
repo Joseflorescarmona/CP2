@@ -13,14 +13,14 @@
     }
 
     resource "azurerm_subnet" "subnet" {                                 // definir la subred
-        name                      = var.Subnet_name
-        resouresource_group_name  = azurerm_resource_group.rg.name
-        virtual_network_name      = azurerm_virtual_network.vnet.name
-        aaddress_prefixes         = ["10.0.2.0/24"]    
+        name                 = var.Subnet_name
+        resource_group_name  = azurerm_resource_group.rg.name
+        virtual_network_name = azurerm_virtual_network.vnet.name
+        address_prefixes     = ["10.0.2.0/24"]    
     }
 
     resource "azurerm_network_interface" "nic" {                        //definir el interfaz de red or nic con ip dinamica
-        Name                = "vnic"
+        name                = "vnic"
         location            = azurerm_resource_group.rg.location
         resource_group_name = azurerm_resource_group.rg.name     
 
@@ -40,11 +40,12 @@
         network_interface_ids  = [ azurerm_network_interface.nic.id, 
     ]
     
+    /*
     admin_ssh_key {
         username   = "azureuser"
-        public_key = file("~/.ssh/id_rsa.pub")                          //clave publica el fichero donde esta
+        public_key = file("~/.ssh/id_rsa.pub")                          //clave publica el fichero donde esta solo en el caso que se ejecute desde
     }
-
+    */
     os_disk {
         caching              = "ReadWrite"
         storage_account_type = "Standard_LRS"
