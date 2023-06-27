@@ -1,1 +1,3 @@
-terraform.exe
+terraform/terraform.exe
+terraform/.terraform
+terraform/.terraform.lock.hcl
