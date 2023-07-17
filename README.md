@@ -211,11 +211,32 @@ Ahora con la clase 36 y 37 empieza la teoria de Kubernetes
 
 
 
+ANSIBLE installacion en MAC
 
+    To install Ansible on a Mac, you can follow these steps:
 
+    Ensure that you have the Homebrew package manager installed. 
+   
+         /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
+    
 
+    Once Homebrew is installed, you can install Ansible by running the following command in the Terminal:
 
+         brew install ansible
 
-ANSIBLE
+    This command will download and install Ansible along with its dependencies.
 
+    After the installation is complete, verify that Ansible is installed correctly by checking its version:
+
+            ansible --version
+
+    This command should display the version of Ansible installed on your Mac.(in this case 2.15.1)
+
+Terraform instalacion en MAC
+
+brew install terraform
+brew version
+
+Install cli in mac usando brew y actualizandolo antes
+ brew update && brew install azure-cli
 
