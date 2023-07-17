@@ -40,7 +40,6 @@ resource "azurerm_linux_virtual_machine" "vm" { // definimos los aspectos necest
   network_interface_ids = [azurerm_network_interface.nic.id,
   ]
 
-
   admin_ssh_key {
     username   = "azureuser"
     public_key = file("~/ssh/id_rsa.pub") //clave publica el fichero de mi mac /ssh/id_rsa.pub
