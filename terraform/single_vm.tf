@@ -46,6 +46,8 @@ resource "azurerm_linux_virtual_machine" "vm" { // definimos los aspectos necest
   location            = azurerm_resource_group.rg.location
   size                = "Standard_F2" //tamaño segun el catalgo de azure
   admin_username      = "azureuser"   //usuario
+  disable_password_authentication = false
+  admin_password      = "azurepassword55!" // password
   network_interface_ids = [azurerm_network_interface.nic.id,
   ]
 
