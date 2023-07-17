@@ -5,3 +5,7 @@ output "resource_group_id" { // varoables de salida con el id del resource group
 output "vm_id" {
   value = azurerm_linux_virtual_machine.vm.id //definimos otra variable de salida para cuando se cree la maquina virtual de linux
 }
+
+output "vip" {
+  value = azurerm_public_ip.pip.ip_address
+}
