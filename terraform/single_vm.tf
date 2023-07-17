@@ -43,7 +43,7 @@ resource "azurerm_linux_virtual_machine" "vm" { // definimos los aspectos necest
 
   admin_ssh_key {
     username   = "azureuser"
-    public_key = file("~/.ssh/id_rsa.pub") //clave publica el fichero de mi pc C:\Users\725362/.ssh/id_rsa.pub
+    public_key = file("~/ssh/id_rsa.pub") //clave publica el fichero de mi mac /ssh/id_rsa.pub
   }
 
   os_disk {
@@ -63,5 +63,5 @@ resource "azurerm_linux_virtual_machine" "vm" { // definimos los aspectos necest
     sku       = "centos-8-stream-free"
     version   = "22.03.28"
 
-  }  
+  }
 }
