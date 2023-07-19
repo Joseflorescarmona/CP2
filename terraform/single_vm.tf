@@ -40,6 +40,29 @@ resource "azurerm_network_interface" "nic" { //definir el interfaz de red or nic
   }
 }
 
+resource "azurerm_network_security_group" "NGS" {
+  name                = "NGS1"
+  location            = azurerm_resource_group.rg.location
+  resource_group_name = azurerm_resource_group.rg.name
+
+  security_rule {
+    name                       = "Rule80"
+    priority                   = 100
+    direction                  = "Inbound"
+    access                     = "Allow"
+    protocol                   = "Tcp"
+    source_port_range          = "*"
+    destination_port_range     = "*" //80 if need only port 80 at the moment all open 
+    source_address_prefix      = "*"
+    destination_address_prefix = "*"
+  }
+}
+
+resource "azurerm_subnet_network_security_group_association" "association1" { // asigna el securty group a la red
+  subnet_id                 = azurerm_subnet.subnet.id
+  network_security_group_id = azurerm_network_security_group.NGS.id
+}
+
 resource "azurerm_linux_virtual_machine" "vm" { // definimos los aspectos necestarios de la maquina virtual de Linux
   name                = "vm1"
   resource_group_name = azurerm_resource_group.rg.name
@@ -47,14 +70,14 @@ resource "azurerm_linux_virtual_machine" "vm" { // definimos los aspectos necest
   size                = "Standard_F2" //tamaño segun el catalgo de azure
   admin_username      = "azureuser"   //usuario
   disable_password_authentication = false
-  admin_password      = "azurepassword55!" // password
+  admin_password      = "azurepassword55!" // password if need it
   network_interface_ids = [azurerm_network_interface.nic.id,
   ]
 
 
   admin_ssh_key {
     username   = "azureuser"
-    public_key = file("~/ssh/id_rsa.pub") //clave publica el fichero de mi mac /ssh/id_rsa.pub
+    public_key = file("~/.ssh/1689784194_6509151.pub") //clave publica el fichero de mi mac generada con "az sshkey create --location uksouth --resource-group rg-createdbyTF_Jose --name sshkey-ej-lb "
   }
 
   os_disk {
@@ -76,3 +99,37 @@ resource "azurerm_linux_virtual_machine" "vm" { // definimos los aspectos necest
 
   }
 }
+
+resource "azurerm_container_registry" "acr" {
+  name                = var.registry_name
+  resource_group_name = azurerm_resource_group.rg.name
+  location            = azurerm_resource_group.rg.location
+  sku                 = var.registry_sku
+  admin_enabled       = true
+}
+
+resource "azurerm_kubernetes_cluster" "AKS" {
+  name                = "AKS1"
+  location            = azurerm_resource_group.rg.location
+  resource_group_name = azurerm_resource_group.rg.name
+  dns_prefix          = "AKS1"
+
+  default_node_pool {
+    name       = "default"
+    node_count = 1
+    vm_size    = "Standard_F2"
+  }
+
+  identity {
+    type = "SystemAssigned"
+  }
+
+}
+
+resource "azurerm_role_assignment" "assignment1" {
+  principal_id                     = azurerm_kubernetes_cluster.AKS.kubelet_identity[0].object_id
+  role_definition_name             = "AcrPull"
+  scope                            = azurerm_container_registry.acr.id
+  skip_service_principal_aad_check = true
+}
+
