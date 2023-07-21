@@ -1,6 +1,6 @@
 name: 'First playbook'
   hosts: webservers
-  remote_user: azureuser
+  remote_user: contenedor
   become: true
   vars_files:
     - vars/00_vars.yaml

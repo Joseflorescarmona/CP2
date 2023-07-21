@@ -1,2 +1,4 @@
 terraform/terraform.exe
 terraform/.terraform
+terraform/Terraform.tfstate
+terraform/terraform.tfstate.backup
