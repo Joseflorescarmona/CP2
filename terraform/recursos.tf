@@ -46,13 +46,35 @@ resource "azurerm_network_security_group" "NGS" {
   resource_group_name = azurerm_resource_group.rg.name
 
   security_rule {
-    name                       = "Rule80"
-    priority                   = 100
+    name                       = "Rule8080"
+    priority                   = 101
     direction                  = "Inbound"
     access                     = "Allow"
     protocol                   = "Tcp"
     source_port_range          = "*"
-    destination_port_range     = "*" //80 if need only port 80 at the moment all open 
+    destination_port_range     = "8080" //8080if need only port 80 at the moment all open 
+    source_address_prefix      = "*"
+    destination_address_prefix = "*"
+  }
+    security_rule {
+    name                       = "Rule20"
+    priority                   = 102
+    direction                  = "Inbound"
+    access                     = "Allow"
+    protocol                   = "Tcp"
+    source_port_range          = "*"
+    destination_port_range     = "22" //ssh port 
+    source_address_prefix      = "*"
+    destination_address_prefix = "*"
+  }
+      security_rule {
+    name                       = "Rule80"
+    priority                   = 103
+    direction                  = "Inbound"
+    access                     = "Allow"
+    protocol                   = "Tcp"
+    source_port_range          = "*"
+    destination_port_range     = "80" //ssh port 
     source_address_prefix      = "*"
     destination_address_prefix = "*"
   }
@@ -68,7 +90,7 @@ resource "azurerm_linux_virtual_machine" "vm" { // definimos los aspectos necest
   resource_group_name = azurerm_resource_group.rg.name
   location            = azurerm_resource_group.rg.location
   size                = "Standard_F2" //tamaño segun el catalgo de azure
-  admin_username      = "azureuser"   //usuario
+  admin_username      = var.ssh_user   //usuario
   disable_password_authentication = false
   admin_password      = "azurepassword55!" // password if need it
   network_interface_ids = [azurerm_network_interface.nic.id,
@@ -76,8 +98,8 @@ resource "azurerm_linux_virtual_machine" "vm" { // definimos los aspectos necest
 
 
   admin_ssh_key {
-    username   = "azureuser"
-    public_key = file("~/.ssh/1689784194_6509151.pub") //clave publica el fichero de mi mac generada con "az sshkey create --location uksouth --resource-group rg-createdbyTF_Jose --name sshkey-ej-lb "
+    username   = var-ssh_user
+    public_key = file(var.public_key_path) //clave publica el fichero de mi mac generada con "az sshkey create --location uksouth --resource-group rg-createdbyTF_Jose --name sshkey-ej-lb "
   }
 
   os_disk {

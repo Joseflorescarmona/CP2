@@ -26,14 +26,15 @@ variable "registry_sku" {
   default     = "Basic"
 }
 
-variable "public_key_path" {
-  type        = string
-  description = "Ruta para la clave pública de acceso a las instancias"
-  default     = "~/.ssh/id_rsa.pub"
-}
 
 variable "ssh_user" {
   type        = string
   description = "Usuario para hacer ssh"
   default     = "contenedor"
+}
+
+variable "public_key_path" {
+  type        = string
+  description = "Ruta para la clave pública de acceso a las instancias"
+  default     = "~/.ssh/1689784194_6509151.pub"
 }
