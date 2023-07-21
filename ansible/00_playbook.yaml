@@ -1,4 +1,5 @@
-name: 'First playbook'
+---
+- name: 'First playbook'
   hosts: webservers
   remote_user: contenedor
   become: true
