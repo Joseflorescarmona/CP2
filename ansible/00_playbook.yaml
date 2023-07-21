@@ -6,11 +6,44 @@
   vars_files:
     - vars/00_vars.yaml
   tasks:
-    - name: 'Task 1'
+    - name: 'change time to spain time'
       timezone:
         name: "{{ zone }}"
 
-    - name: 'Task 2'
+    - name: 'install httpd'
       yum:
         name: "{{ rpms }}"
         state: latest
+
+    - name: 'Install Podman package on CentOS/RHEL'
+      package:
+        name: podman
+        state: present    
+    - name: Ensure the directory exists
+      file:
+        path: /home/contenedor/imagenes
+        state: directory
+
+    - name: 'Copy index.html to the server'
+      copy:
+        src: /Users/joseflores/Local/CP2/ansible/index.html
+        dest: /home/contenedor/imagenes/index.html
+        mode: '0644'       
+        remote_src: false
+
+    - name: 'Copy Dockerfile to the server'
+      ansible.builtin.copy:
+        src: /Users/joseflores/Local/CP2/ansible/Containerfile
+        dest: /home/contenedor/imagenes/
+        mode: '0644'
+        remote_src: false
+
+    - name: 'Copy nginx.conf to the server'
+      copy:
+        src: /Users/joseflores/Local/CP2/ansible/nginx.conf
+        dest: /home/contenedor/imagenes/
+        mode: '0644'
+        remote_src: false
+
+    - name: 'Build the container image'
+      command: podman build -t webserver /home/contenedor/imagenes
