@@ -1,0 +1,15 @@
+name: 'First playbook'
+  hosts: webservers
+  remote_user: azureuser
+  become: true
+  vars_files:
+    - vars/00_vars.yaml
+  tasks:
+    - name: 'Task 1'
+      timezone:
+        name: "{{ zone }}"
+
+    - name: 'Task 2'
+      yum:
+        name: "{{ rpms }}"
+        state: latest

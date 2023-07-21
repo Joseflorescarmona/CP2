@@ -1,0 +1,5 @@
+[webservers]
+20.117.93.40 nombre_dominio=webserver.example.com ip_interna=10.0.2.4
+
+[databases]
+20.108.182.108 nombre_dominio=database.example.com ip_interna=10.0.2.5
