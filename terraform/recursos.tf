@@ -98,7 +98,7 @@ resource "azurerm_linux_virtual_machine" "vm" { // definimos los aspectos necest
 
 
   admin_ssh_key {
-    username   = var-ssh_user
+    username   = var.ssh_user
     public_key = file(var.public_key_path) //clave publica el fichero de mi mac generada con "az sshkey create --location uksouth --resource-group rg-createdbyTF_Jose --name sshkey-ej-lb "
   }
 
