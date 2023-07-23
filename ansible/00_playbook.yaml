@@ -19,6 +19,7 @@
       package:
         name: podman
         state: present    
+
     - name: Ensure the directory exists
       file:
         path: /home/contenedor/imagenes
@@ -63,4 +64,7 @@
 
     - name: Push the Podman image to ACR
       command: podman push Joseflorescarmona.azurecr.io/webserver:latest
+
+    - name: Pull the container image to the VM
+      command: podman pull --creds Joseflorescarmona:bvAtOfgSdoSccTaYJzbwPzUW2LUzla95x/UPK0fOls+ACRBFuXco joseflorescarmona.azurecr.io/webserver:latest
 

@@ -72,7 +72,7 @@ Documentacion del terraform Registry
 
 son los dos importantes de la practica
 
-PODMAN
+PODMAN (esta parte antes de empezar con Ansible, es decir esto hay que traducir a automatismo con Ansible)
 
 Una vez en la maquina virtual linux para installar podman
 
@@ -201,12 +201,6 @@ esto necesitara las credenciales
 si hacemos Sudo reboot y reinicio la maquina, esto seguira funcionando, me conecto a traves del navegador web con la ip externa tambien mostraria eso poniendo esta url
 
 Https://13.87.157:8080 me diria que no es seguro, conf avanzada, acceder y con las credenciales debe entrar el servidor web tambien
-
-
-Ahora con la clase 36 y 37 empieza la teoria de Kubernetes
-
-
-
 
 
 
