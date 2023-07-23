@@ -51,6 +51,16 @@
     - name: Tag the Podman image with ACR repository URL
       command: podman tag webserver:latest Joseflorescarmona.azurecr.io/webserver:latest
 
+    - name: Set ACR credentials as environment variables  
+      set_fact:
+        podman_registry_username: "Joseflorescarmona"
+        podman_registry_password: "bvAtOfgSdoSccTaYJzbwPzUW2LUzla95x/UPK0fOls+ACRBFuXco"
+
+    - name: Log in to ACR
+      shell: |
+        echo "{{ podman_registry_password }}" | podman login Joseflorescarmona.azurecr.io -u "{{ podman_registry_username }}" --password-stdin
+      register: login_result
+
     - name: Push the Podman image to ACR
       command: podman push Joseflorescarmona.azurecr.io/webserver:latest
 
