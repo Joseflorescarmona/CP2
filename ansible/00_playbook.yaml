@@ -47,3 +47,10 @@
 
     - name: 'Build the container image'
       command: podman build -t webserver /home/contenedor/imagenes
+
+    - name: Tag the Podman image with ACR repository URL
+      command: podman tag webserver:latest Joseflorescarmona.azurecr.io/webserver:latest
+
+    - name: Push the Podman image to ACR
+      command: podman push Joseflorescarmona.azurecr.io/webserver:latest
+
